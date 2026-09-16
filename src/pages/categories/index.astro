@@ -1,0 +1,114 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import {
+  androidProductivityImg,
+  itQuiz,
+  javaCodeImg,
+  webDevImg,
+  pcDisImg,
+  netProgImg,
+  cyberSecImg,
+  digiElecImg,
+  esportImg,
+  compNetImg,
+  pythonProgramming,
+  linuxSysAdmin,
+} from "@/assets/images/";
+import { Badge } from "@/components/ui/badge";
+
+type Category = {
+  image: ImageMetadata;
+  name: string;
+  isNew?: boolean;
+};
+
+const CATEGORIES: Category[] = [
+  {
+    image: pythonProgramming,
+    name: "Python Programming",
+    isNew: true,
+  },
+  {
+    image: linuxSysAdmin,
+    name: "Linux Administration",
+    isNew: true,
+  },
+  {
+    image: androidProductivityImg,
+    name: "Android Applications",
+  },
+  {
+    image: itQuiz,
+    name: "IT Quiz Bee",
+  },
+  {
+    image: javaCodeImg,
+    name: "Java Programming",
+  },
+  {
+    image: webDevImg,
+    name: "Web Design",
+  },
+  {
+    image: pcDisImg,
+    name: "PC Assembly / Disassembly",
+  },
+  {
+    image: netProgImg,
+    name: "C# Programming",
+  },
+  {
+    image: cyberSecImg,
+    name: "Cybersecurity",
+  },
+  {
+    image: digiElecImg,
+    name: "Digital Electronics",
+  },
+  {
+    image: compNetImg,
+    name: "Computer Networking",
+  },
+  {
+    image: esportImg,
+    name: "E-Sports",
+  },
+];
+---
+
+<Layout title="Categories">
+  <div class="">
+    <header
+      class="relative h-56 w-full bg-secondary flex justify-center items-center px-5 md:px-20"
+    >
+      <h1 class="text-4xl font-metropolis-black">Categories</h1>
+    </header>
+
+    <div class="container px-5 md:px-20 flex flex-wrap gap-6 py-10">
+      {
+        CATEGORIES.map((item) => (
+          <div class="w-full sm:w-[calc(50%-12px)] h-24 bg-secondary relative rounded-lg grid place-items-center overflow-hidden group cursor-pointer ">
+            <div class="absolute w-full h-full bg-black/60 z-10 group-hover:bg-black/80 transition-all" />
+            <Image
+              src={item.image}
+              alt="Android"
+              class="w-fit origin-center z-0 absolute group-hover:scale-110 group-hover:rotate-3 transition-transform"
+              draggable="false"
+            />
+
+            {item.isNew ? (
+              <Badge className="absolute top-2 left-2 z-10" variant="success">New</Badge>
+            ) : (
+              <div class="absolute" />
+            )}
+
+            <span class="z-20 text-sm md:text-base lg:text-xl drop-shadow-xl font-metropolis-semibold cursor-pointer group-hover:scale-110 transition-transform">
+              {item.name}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
